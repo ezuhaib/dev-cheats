@@ -1,0 +1,52 @@
+PERMISSIONS
+chmod -xxx dir
+chmod 	777: all perm to everyone
+		700:owner can do all
+		644:owner write, world can only read
+		600:only owner can read/write
+chmod a+x to make a file executable
+
+VIM/NANO
+visudo
+tap <i> then right click to paste in VIM , exit insert mode before save
+:q :w :wq :qa! gg dG u
+shift+insert to paste and ctrl+insert to copy
+
+USERS
+passwd
+cat /etc/passwd
+/var/log/secure stores commands run with sudo
+adduser deluser addgroup delgroup
+sudo -u -username runs a command through the given user
+visudo to add user to sudoers group
+
+CRON
+gem install whenever
+wheneverize
+edit ./config/schedule.rb
+whenever
+whenever --update-crontab
+crontab -l
+
+FILE MANAGMENT
+mkdir ls rm mv cp
+touch filename
+
+
+DIRECTORIES
+/etc/init.d gives services installed
+/var/log contains log files
+/etc/environment has environment variables
+~/.programrc where program is program name... such file contain per-user config
+
+SERVICES
+sudo services <name> start|status|stop|restart
+/etc/init.d/<name> start|restart|kill|status
+ssh , apache2 , elasticsearch , nginx , postgresql , elasticsearch
+which <name> e.g apache2
+service --status-all
+start/stop/restart <name> is available for some services
+AUTOSTART
+/etc/rc.local
+sudo update-rc.d <service>
+man update-rc.d

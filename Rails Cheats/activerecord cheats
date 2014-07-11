@@ -1,0 +1,71 @@
+Activerecord = Database agnostic ORM framework
+Activemodel = ORM agnostic validation and callbacks framework
+
+JOINS
+joins(:associated_model).where('associated_models_table_name.field = lorem')
+joins(:associated_model).select('associated_models_table_name.field as alias')
+joined table's data has to be explicitly called, is not visible within the activerecord object
+
+NUMBERS
+Methods: count/sum
+Model.count('date', :distinct => true)
+Model.find(:all).group_by(&:date).count
+Model.count(:score) (counts all objects with :score present)
+Model.distinct.count
+Model.group(:city).count
+Relation.sum('field') is same as Relation.select('SUM(field) as sum_id').first.sum_id
+If all you need is the aggregate's value , do not use GROUP BY
+If you need to integrate sums in respective fields, then must GROUP BY
+
+
+SAVING
+<conditions>first_or_create<attributes>
+<conditions>update_all(attributes)
+assign_attribute(s)
+update_attribute(s)
+update_column(s)
+attributes=
+save/save!
+
+SELECT
+select('xyz, abc') or select([:xyz, :abc])
+select('DISTINCT xyz')
+select('DISTINCT ON(xyz) *')
+select('*')
+select('parent.*,joined.field')
+select('parent.*').select('joined.field as field_temp_name')
+select('parent.*, count(joined.field') (MUST specify group by clause)
+
+GROUP
+group('table.column')
+sql: (GROUP BY)
+Must use if using aggregate functions such as sum, and count
+
+WHERE
+where('xyz=? AND abc=?','a','b')
+where(xyz:'a',abc:'b')
+where('xyz LIKE ?',"%#{var}%")
+where('xyz IN ?',[1,2,3])
+where('[field1,field2] IN ?', 'lorem')
+where('xyz NOT ?' , 'lorem')
+where('joined_table.field = "lorem"')
+
+JOINS
+joins(:model)
+JOIN table_name ON table.id = parent.child_id AND table.lorem = ipsum
+use WHERE clause only when need to filter overall results
+add conditions to ON clause if these decide a record is joined
+use DISTINCT/GROUP BY to filter distinct results
+can cascade joins too
+
+JOIN TYPES
+INNER - Return only fully matched records
+LEFT OUTER - Returned all left records, with matching records from right
+RIGHT OUTER - Return all right records, with matching records from left
+FULL OUTER - Return all records from both tables
+Rails only supports the first two types
+Rails joins by INNER by default. If need LEFT, use custom query
+
+FULLY CUSTOM QUERY
+connection = ActiveRecord::Base.connection
+ActiveRecord::Base.connection.execute(query).first

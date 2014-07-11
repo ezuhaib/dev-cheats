@@ -1,0 +1,27 @@
+Put this in application.rb
+#############################
+
+# Load local_env.yml
+config.before_configuration do
+  env_file = File.join(Rails.root, 'config', 'local_env.yml')
+  YAML.load(File.open(env_file)).each do |key, value|
+    ENV[key.to_s] = value
+  end if File.exists?(env_file)
+end
+
+
+Here's a sample local_env.yml
+################################
+
+MAILER_USER: "lorem@psymic.com"
+MAILER_PWD: "rp0234AASDff"
+SECRET_TOKEN: 'bb21ca7b1381020b3920f21c33f7b1381021c73df4e7b1381020b0321c894c3ac8f70eb4121c381020ba21c99836989c21c7b1381020b8bc0421c5bd3aed21c0'
+GA_KEY: "UA-48104456-4"
+DB_NAME: "psymic_development"
+DB_USER: "postgres"
+DB_PWD: "postgres"
+
+.gitignore
+##########
+
+No need to gitignore, just maintain Seperate files for live server vs development

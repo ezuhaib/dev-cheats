@@ -1,0 +1,39 @@
+git init
+git add .
+git add -u
+git commit -a -m
+git add remote <name> <address>
+git push <remote name> <branch>
+git pull
+git commit --amend
+git diff
+git checkout -b <new branch name>
+git checkout <branchname>
+git branch
+git branch -d <branchtodelete>
+git merge <branchname>
+git rebase --interactive
+git add -i
+git rm --cached /path -r
+
+INFO
+git status
+git log
+git log --pretty=oneline
+
+RESET
+git reset --hard HEAD~1
+
+STASH
+stash save <message>
+stash list
+stash apply
+
+TAG
+tag 0.5 (lightweight tag)
+tag new old
+tag name -d
+
+git push --tags
+git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch filepath' HEAD
+git reset --soft HEAD~1

@@ -1,0 +1,20 @@
+RVM
+rvm install 1.9.3
+rvm use 1.9.3
+rvm use --default 1.9.3
+rvm use --system
+
+PASSENGER
+passenger start/stop (after cd'ing into your application directory)
+passenger start --daemonize --port 80 --user username
+
+NGINX
+nginx configuration in these:
+	/etc/nginx/sites-available/default
+	/etc/nginx/nginx.conf
+nginx -t to test nginx
+
+UNICORN
+unicorn -c <path to config file> -d
+pid = cat /tmp/unicorn.appname.pid (or what you set in config)
+kill -QUIT/USR2 pid

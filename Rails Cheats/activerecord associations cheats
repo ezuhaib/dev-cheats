@@ -1,0 +1,34 @@
+HABTM
+has_and_belongs_to_many :model (join table must exist)
+collection << childs
+collection_ids
+collection_ids=
+
+HAS_MANY_THROUGH
+has_many :xyz , through: some_relationship
+has_one :xyz , through: some_relationship
+has_many :channels , through: :channel_items , conditions: ["channel_items.status = ?",'approved']
+
+HAS_MANY
+has_many :items , class_name: "ChannelItem" (for model aliasing)
+
+POLYMORPHIC
+belongs_to :likeable, polymorphic:true
+has_many :likes , as: :likeable
+
+BELONGS_TO/HAS_ONE
+belongs_to :model
+belongs_to :model , counter_cache:true (add column likes_count to likeable)
+has_one implies that foreign_key is in the target model
+belongs_to implies that the defining model has the foreign key
+
+ADVANCED
+combining polymorphic assocation with has_many_through http://stackoverflow.com/a/6011770/1731393
+has_many_through conditions based on extra attribute in join model: "conditions: ['channel_items.status =?','approved']"
+
+SCOPE BLOCKS (Rails 4)
+relationship ->{ scoping_method }
+belongs_to :customer, -> { where active: true }
+belongs_to :order, -> { includes :customer }
+has_one :account, -> { where "user.confirmed = ?", 1 }
+has_one :account, -> { where user:{confirmed: 1} }

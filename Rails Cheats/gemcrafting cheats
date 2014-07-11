@@ -1,0 +1,48 @@
+CLASS_EVAL
+class_eval do <block of code>
+class_eval "string of code"
+User.class_eval
+ActiveRecord::Base.class_eval
+ActionController::Base.class_eval
+
+DEFINING OR EXECUTING STRINGS
+Class.send :method , params
+define_method :name do |params|
+
+DIGGING INTO FUNCTIONALITY
+User.instance_variables
+User.first.instance_variables
+User.methods
+User.method(:new).source_location/owner
+
+PRETTY FORMAT OBJECT
+override inspect and self.inspect method
+class.name.demodulize/deconstantize if need to play with class name
+Return as string "#<#{class_name} Manual stuff here>" etc
+
+EXTENDING MODELS
+if defined? ActiveRecord::Base
+  ActiveRecord::Base.class_eval do
+    extend  MyGem::ModelExtension::ClassMethods
+    include MyGem::ModelExtension::InstanceMethods
+  end
+end
+
+EXTENDING CONTROLLER
+if defined? ActionController::Base
+  ActionController::Base.class_eval do
+    include Papercrop::ControllerExtension
+  end
+end
+
+EXTENDING GEMS
+if defined? PublicActivity::Activity 
+	PublicActivity::Activity.module_eval do
+		acts_as_readable :on => :updated_at
+	end
+end
+
+GEM STRUCTURE
+root/lib/gemname.rb file in root to require all needed files
+root/lib/gemname to contain the overrides
+root/lib/assets for assets

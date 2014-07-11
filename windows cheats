@@ -1,0 +1,50 @@
+EXPLORER
+%SystemRoot%\explorer.exe /e,::{20D04FE0-3AEA-1069-A2D8-08002B30309D}
+
+POWERSHELL RC
+powershell Set-ExecutionPolicy RemoteSigned (run in CMD as admin)
+C:\Users\ezuhaib\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+OR notepad $profile
+function prompt {
+    Write-Host ($(Get-Location)) -NoNewLine -ForegroundColor Cyan
+    Write-Host (">") -NoNewLine -ForegroundColor Cyan
+    return " "
+}
+
+Set-Alias subl 'C:\Program Files\Sublime Text 3\sublime_text.exe'
+
+URU
+add c:\uru to path , and copy uru_rt there
+uru_rt admin install
+uru admin add 'path_to_ruby/bin' --tag 193
+uru admin rm <tag>
+uru <tag>
+uru gem ls <name>
+uru help (nil|admin|gem)
+uru doesn't automatically switch devkit. Do it Manually.
+
+STARTUP
+run shell:startup
+
+RAILS RELATED
+Rename file to .gemrc. so that the last period is removed by windows
+Location for gemrc: C:\ProgramData
+gem: --no-ri --no-rdoc (or just --no-document)
+
+MISC
+Use mklink to create symlinks
+http://stackoverflow.com/a/20666813/1731393 for colorized powershell
+http://www.tested.com/tech/windows/39-using-symlinks-in-windows-for-fun-and-profit/
+
+ELASTICSEARCH
+service.bat install|remove|start|stop|manager
+JAVA_HOME = root of jdk folder
+
+
+CONEMU
+Backup: Either export registry key or save xml file
+Restore: Import registry key or rename xml file to conemu.xml and copy to conemu
+Imp: Need to take ownership of conemu.xml coming from another computer
+
+OWNERSHIP:
+Use http://www.howtogeek.com/downloads/TakeOwnership.zip

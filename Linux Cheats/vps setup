@@ -1,0 +1,20 @@
+Login with vanilla credentials
+
+A. SECURITY
+Create new user with adduser
+Add new user to sudoers group with visudo
+Create an RSA key pair locally with ssh-keygen
+Upload key to remote user with ssh-copy-id
+Change SSH port to non-standard port
+Disable root login
+Disable password login
+
+B. CUSTOMIZATIONS
+Colorize bash prompt via ~/.bashrc
+
+C. MOVING ON
+create folder app/psymic remotely
+run cap git:check
+install git-core on vps. may need to apt-get update first
+add github repo fetch key (private) to vps
+run cap deploy:check

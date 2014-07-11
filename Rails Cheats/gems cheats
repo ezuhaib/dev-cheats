@@ -1,0 +1,82 @@
+BOOTSTRAP_FORM_FOR
+style: :horizontal
+f.form_group do
+
+CAPISTRANO
+cap -T
+
+CANCAN
+views >> can? :activity , @object
+controller >> authorize! :activity , @object
+
+DEVISE
+before_action :configure_permitted_parameters, if: :devise_controller?
+def configure_permitted_parameters
+	devise_parameter_sanitizer.for(:account_update) << :email << User.option_params
+	devise_parameter_sanitizer.for(:sign_up) << User.profile_params
+end
+  
+DOTIW
+distance_of_time_in_words(Time.now, othertime, true, { :highest_measure_only => true })
+
+FRIENDLY_IDS
+extend FriendlyId
+friendly_id :column
+friendly_id :column , use: :slugged (must add 'slug' column)
+
+KAMINARI
+Mindlog.all.page(params[:page]).per(10)
+paginated_object.total_pages
+link_to_(previous|next)_page @object , "link text"
+page_entries_info
+
+MINIPROFILER
+?pp=help for miniprofiler
+
+NESTED_FORMS
+Must add accepts_nested_attributes_for to parent model
+fields_for :nest_model_pluralized do |child|
+child.text_field :title
+child.link_to_remove "Remove this"
+f.link_to_add "Add this", :child
+
+PAPERCLIP
+image_tag @user.avatar(:thumb)
+rails generate paperclip user avatar
+has_attached_file :avatar,
+  :styles => { :thumb => "130x130#", :mini => "60x60#" },
+  :default_url => set_default_avatar
+validates_attachment_(presence|content_type|size)
+	content_type: ["image/jpg", "image/gif", "image/png"]
+	content_type: /\Aimage\/.*\Z/
+	in: 0..2000.kilobytes
+rake paperclip:refresh:thumbnails CLASS=User
+rake paperclip:refresh:missing_styles
+
+PAPERCLIP ADVANCED
+a = @user.avatar
+a.original_filename
+a.queued_for_write[:original] -> UploadedFileAdapter
+Paperclip.io_adapters.for(a) -> AttachmentAdapter
+Paperclip.run('command','extensions') Runs arbitrary OS commands
+File.extname('filename')
+
+PUBLICACTIVITY
+install: rails g public_activity:migration
+OBJECT.create_activity :create , recipient: @response.mindlog.user , owner: current_user
+include PublicActivity::Common
+
+SITEMAP_GENERATOR
+rake sitemap:refresh
+rake sitemap:refresh:no_ping
+
+UNREAD
+install: rails g unread:migration
+In user.rb acts_as_reader
+
+WHENEVER
+Update schedule.rb -> whenever -> whenever -w
+crontab -l for viewing entries
+
+YAML_DB
+rake db:data:dump/load (needs yaml_db)

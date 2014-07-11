@@ -1,0 +1,17 @@
+GRAPHICS
+compiz-plugins
+compizconfig-settings-manager
+
+BASH
+~/.bashrc
+http://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
+echo -e "Normal \e[1;93mBold (1=bold , 93-color) http://misc.flogisoft.com/bash/tip_colors_and_formatting
+for colorizing ssh:
+
+if [ -n "$SSH_CLIENT" ]; then text=" ssh"
+fi
+export PS1='\[\e[0;31m\]\u@\h:\w${text}$\[\e[m\] '
+
+PARTITIONS
+Automount using default Disk app
+can edit /etc/fstab manually

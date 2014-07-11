@@ -1,0 +1,19 @@
+SELECTORS
+$('#id')
+* 		all
+, 		OR
+:		first/last/even/odd
+> 		parent > child
+$(this)	self
+
+METHODS
+html()
+val()
+
+TRANSITIONS
+fadeIn
+fadeOut
+displayToggle
+
+FADE IN AFTER FADE OUT
+fadeIn(300,function(){$(this).fadeOut})
