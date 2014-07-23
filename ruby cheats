@@ -17,6 +17,12 @@ PRINTF
 <format> % number
 "%03d" : min. 3 characters , puts 2 leading zeroes if 1 digit
 
+REGEX
+string =~ /r/
+string.scan(r)
+string.match(r)
+string.gsub/sub(r,'substituted_text')
+
 SWITCH
 case var
 when value

@@ -1,0 +1,13 @@
+http://everydayrails.com/2012/03/12/testing-series-intro.html
+rails g rspec:install
+each spec file should require 'rails_helper'
+For stuff that ALL tests need, add to spec_helper
+
+describe
+
+Matchers:
+Basic syntax: expect(lorem).to be_true
+MATCHERS:	be_valid , be_invalid , be_true , be_false, be_empty, be_nil , be/eq
+			raise_error , raise_error(error_class), raise_error("message")
+			be_xxx (lorem.xxx?), be_instance_of(), be_kind_of()
+			match(/regex/)

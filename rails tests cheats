@@ -1,0 +1,68 @@
+PHILOSOPHY
+Ideally a browser shouldn't be in use while developing logic,
+must be used only when developing UX.
+
+
+*****************
+MINITEST
+*****************
+
+IMPORTANT
+Must add include Devise::TestHelpers in test_helper.rb
+
+RUNNING TESTS
+rake test
+rake test:unit/controller/functionals/integration etc
+rake test test/controllers/entry_controller_test.rb 
+
+WRITING TESTS
+UNIT (Model) TESTS
+test "name" do
+ assert model.save
+ assert_not model.save (saving should fail for invalid data) 
+end
+
+FUNCTIONAL (Controller) TESTS
+get :action_name , param: value , param_b: value
+assert_redirected_to post_path()
+available flash, session, assigns, and cookies hashes
+e.g flash[:error] and assigns(:post)
+available @request, @response and @controller variables
+assert_template :name
+assert_template layout: "layouts/application"
+assert_template :name , partial: "_form"
+assert_response :success
+
+VIEWS TESTS
+assert_select 'title' , "welcome to this website"
+assert_select 'ul.nav' do
+	assert_select 'li' , 8
+end
+
+INTEGRATION TESTS
+Have to be manually created with any names
+These classes inherit from ActionDispatch::IntegrationTest
+Methods: https! https!(false) https? redirect? get_via_redirect('/post', params)
+Can simplify by use of custom DSLs
+
+ROUTING TESTS
+assert_routing 'posts/1' , controller: 'posts' , action: 'show' , id: '1'
+
+CALLBACKS
+def setup/teardown
+setup/teardown :method_name
+
+************
+RSPEC
+************
+http://everydayrails.com/2012/03/12/testing-series-intro.html
+rails g rspec:install
+each spec file should require 'rails_helper'
+For stuff that ALL tests need, add to spec_helper
+
+Matchers:
+Basic syntax: expect(lorem).to be_true
+MATCHERS:	be_valid , be_invalid , be_true , be_false, be_empty, be_nil , be/eq
+			raise_error , raise_error(error_class), raise_error("message")
+			be_xxx (lorem.xxx?), be_instance_of(), be_kind_of()
+			match(/regex/)

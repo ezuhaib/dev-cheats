@@ -1,0 +1,25 @@
+#################################
+# SECTION 1 : KEYS
+#################################
+
+# Creating and remotely pushing keys
+ssh-keygen
+ssh-copy-id user@host
+ssh-copy-id -i ~.ssh/key_name.pub user@host (if only pushing one key)
+
+# Adding public identities locally, temporarily
+ssh-add ~/.ssh/your-key
+ssh-add -l
+
+# Adding public identities locally, permenantly
+add to ~/.ssh/config or /etc/ssh/ssh_config
+IdentityFile ~/.ssh/file_name
+Must chmod 700 the above file
+No need to restart openssh server afterwards
+
+#################################
+# SECTION 2 : CONNECTIONS
+#################################
+
+# Simple connections
+ssh user@host -p <port>

@@ -12,9 +12,15 @@ Disable password login
 B. CUSTOMIZATIONS
 Colorize bash prompt via ~/.bashrc
 
+< a lot of text missing >
+
 C. MOVING ON
 create folder app/psymic remotely
 run cap git:check
 install git-core on vps. may need to apt-get update first
 add github repo fetch key (private) to vps
 run cap deploy:check
+
+D. LATER STEPS
+Add crontasks back
+Add the backup gem
