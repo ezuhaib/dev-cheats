@@ -23,3 +23,15 @@ No need to restart openssh server afterwards
 
 # Simple connections
 ssh user@host -p <port>
+
+# Proxying
+ssh -Nn -D 1080 host
+
+#################################
+# SECTION 3: SERVER CONFIG
+#################################
+shortcuts: add to ~/.ssh/cpnfig and chmod 600 it
+Host <anyname>
+Hostname <ip>
+Port
+User

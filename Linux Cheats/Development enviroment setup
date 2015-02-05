@@ -1,0 +1,12 @@
+sudo apt-get install curl git postgresql postgresql-contrib libpq-dev
+
+gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+\curl -sSL https://get.rvm.io | bash -s stable
+source /home/ezuhaib/.rvm/scripts/rvm
+rvm list known
+rvm install 2.2.0
+gem install rails
+
+sudo -u postgres psql postgres
+
+git clone <ssh path>

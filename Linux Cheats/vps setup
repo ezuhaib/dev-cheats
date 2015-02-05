@@ -24,3 +24,7 @@ run cap deploy:check
 D. LATER STEPS
 Add crontasks back
 Add the backup gem
+
+
+NGINX
+/opt/nginx/conf

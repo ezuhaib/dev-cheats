@@ -12,6 +12,9 @@ gem 'name' , github "user/reponame"
 gem 'name' , path: "local path"
 bundle outdated
 
+FORM
+f.collection_select :category , Category.all , :id , :name
+
 MAILER
 UserMailer.registration_confirmation(current_user).deliver
 

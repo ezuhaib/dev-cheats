@@ -1,3 +1,13 @@
+ACTS AS TAGGABLE
+gem acts-as-taggable-on
+rake acts_as_taggable_on_engine:install:migrations
+
+BACKUP
+gem install 'backup' on remote server (do not add in gemfile)
+drop a configured file into ~/Backups/models/backup_model_name
+run command 'backup perform -t backup_model_name' over remote server to backup
+Or put that in the cron tasks
+
 BOOTSTRAP_FORM_FOR
 style: :horizontal
 f.form_group do
@@ -19,6 +29,12 @@ end
 DOTIW
 distance_of_time_in_words(Time.now, othertime, true, { :highest_measure_only => true })
 
+FONTAWESOME
+gem 'font-awesome-rails'
+*= require 'font-awesome'
+fa-icon "name"
+
+@import "font-awesome";
 FRIENDLY_IDS
 extend FriendlyId
 friendly_id :column
@@ -67,9 +83,15 @@ OBJECT.create_activity :create , recipient: @response.mindlog.user , owner: curr
 include PublicActivity::Common
 
 SITEMAP_GENERATOR
+gem 'sitemap_generator'
+rake sitemap:install
 rake sitemap:refresh
 rake sitemap:refresh:no_ping
+edit config/sitemap.rb --- the file tells you how
 
+TABS_ON_RAILS
+<%= tab.name "Name" , name_path %> TO create the tab
+set_tab :name (in controller/view) to select the tab
 UNREAD
 install: rails g unread:migration
 In user.rb acts_as_reader
