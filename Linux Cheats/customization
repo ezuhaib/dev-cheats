@@ -26,3 +26,16 @@ sudo apt-get install indicator-netspeed
 GRUB
 /etc/default/grub
 then update-grub
+
+HIBERNATION
+sudo swapon -s
+free -m
+df -h
+sudo subl etc/fstab
+Add: UUID=735b3be3-779c-4d21-a944-b033225f3ab4 none   swap    sw      0       0
+Get UUID from sudo blkid /dev/sda3
+sudo pm-hibernate for a test run
+sudo subl /etc/default/grub ... add resume=/dev/sda5 to CMDLINE_LINUX_DEFAULT
+Add to it gnome-screensaver-command -l if needing lock post resume
+sudo update-grub
+To make this permanent, read: http://ubuntuhandbook.org/index.php/2014/04/enable-hibernate-ubuntu-14-04/
