@@ -11,6 +11,7 @@ gem 'name' , git: "repo"
 gem 'name' , github "user/reponame"
 gem 'name' , path: "local path"
 bundle outdated
+bundle open ckeditor
 
 FORM
 f.collection_select :category , Category.all , :id , :name

@@ -87,3 +87,15 @@ The module's methods are merged with the current class
 
 EXTEND
 The module's methods extend only as class methods
+
+Sanitization
+ActionController::Base.helpers.strip_tags(string)
+ActionController::Base.helpers.strip_links(string)
+
+Length
+truncate(string, length:80, separator: ' ')
+
+Advanced
+"string".classify.constantize
+"string".demodulize
+"string".deconstantize
