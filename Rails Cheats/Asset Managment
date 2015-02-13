@@ -1,0 +1,52 @@
+GENERAL CONCEPTS
+- Assets may be placed anywhere within the asset load path
+
+COMPILED ASSETS?
+- Compiling involves multiple steps:
+	- Minification of css/js
+	- Unification of css/js into single files
+	- Compiling sass, coffeescript and erb
+	- Adding of digests
+	- Moving all these files to a unified assets folder
+- In development, compiling done on-the-fly
+- During production, everything precompiled
+- CSS/JS compilation files:
+	- Those defined in the application.css/js manifest
+	- Those manually added (in initializers/assets.rb by convention)
+		- Rails.application.config.assets.precompile += %w( mail.css )
+		- Rails.application.config.assets.precompile += %w( ckeditor/* )
+	- Manually added files shall NOT be joined to the main css/js
+	- So these shall have to be manually included in pages
+	- NOT to add a css file in manifest as well as initializer
+
+SERVING ASSETS?
+- image_path() etc generate the digested asset's link
+- The assets are served either by:
+	- The application server. Default in development env.
+	- The web server (More adapted for this job). Default in production.
+- The server has to be configured if it has to serve assets.
+- Add the following in your server block:
+	location ~ ^/(images|javascripts|stylesheets|assets|system)/  {
+      root /home/<username>/apps/<appname>/current/public;
+      expires max;
+      break;
+    }
+
+    location ~ ^/(robots.txt|sitemap.xml.gz) {
+    	root /home/<username>/apps/<appname>/current/public;
+  	}
+
+COMPILING ASSETS:
+- In rails 4 turbo assets ensures only changed assets are compiled
+- rake assets:precompile
+- rake assets:clobber (Remove all assets)
+- rake assets:clean (Remove old assets)
+
+ASSETS VALIDITY:
+- Depends on:
+	- Validity defined in the server config. Usually distant future.
+	- On their digest being current or not.
+- If assets are changed:
+	- They are saved with new digests... so browsers do not use the cached versions.
+	- The application must be restarted to start serving the new assets.
+	- The older assets remain in the assets folder.
