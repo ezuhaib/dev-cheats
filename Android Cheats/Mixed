@@ -1,0 +1,135 @@
+Mixed cheats -> From my first Android Roundup
+
+
+Setup Android Studio
+http://www.raywenderlich.com/78574/android-tutorial-for-beginners-part-1
+
+Concepts
+Activities - in java
+Layouts - in xml
+		- each activity has a layout
+Manifests - High level info of the app, such as supported res and versions
+Strings.xml - put reusable strings here
+dp: unit of size. 1dp=1px on MDPI . scales automatically on other screens
+action_bar: the three dotted menu
+intent: the boss, the command. explicit vs implicit
+
+<uses-sdk
+        android:targetSdkVersion="21"
+        android:minSdkVersion="16" />
+
+<resources>
+ 	<string name="hello_world">ezuhaib is learning android!</string>
+</resources>
+
+ADB
+adb devices
+adb kill-server
+adb start-server
+restart server as root if adb devices shows a device named ?????? 
+adb shell wm size 640x480 (or reset)
+adb shell wm density 160 (or reset instead of numeric value)
+
+IDE
+- AVD Manager - to create and manage emulations
+- CTRL+SHIFT+N -> Open file directly
+- Add > Image to add multiRes image resources
+- Click any text (errored or otherwise) and click the light bulb or ALT+ENTER to view it's options
+
+VIEWS
+Common
+	id: "@+id/main_text"
+	text: "text" or "@string/string_name"
+	layout_width/layout_height: match_parent or wrap_content
+	layout_marginLeft
+TextView
+Button
+ImageView
+	android:src = "@folder/file"
+EditText
+	hint
+
+LAYOUTS
+RelativeLayout
+	layout_alignParentBottom
+	layout_toRightOf
+	layout_alignRight
+LinearLayout
+	orientation
+	layout_weight
+	layout_gravity (like float)
+	gravity (like text-align)
+
+Manipulating view from an activity:
+	The view should have an android:id
+	It should be declared in the activity's Main class:
+		e.g TextView mainTextView;
+	The above "TextView" declaration requires that class to be loaded
+		Quick load by ALT+ENTER over the error saying that it needs to be loaded
+		Or Settings>Editor>General>AutoImport ----> Optimize imports and Add unambigous imports
+	It should be found (think DOM traversal)
+		In the onCreate class
+		mainTextView = (TextView) findViewById(R.id.main_textview)
+	Manipulate!!!
+		mainTextView.setText("Set in Java!");
+		mainButton.setOnClickListener(this); (This refers to the parent activity)
+		mainEditText.getText().toString()
+
+ADAPTERS
+Used to populate lists with dynamic data
+Sits between data source and the view
+So is equivalent to rail's views
+e.g.
+	ListView mainListView;
+	ArrayAdapter mArrayAdapter;
+	ArrayList mNameList = new ArrayList();
+	in onCreate:
+		mainListView = (ListView) findViewById(R.id.main_listview);
+		mArrayAdapter = new ArrayAdapter(this,
+			android.R.layout.simple_list_item_1,
+			mNameList);
+		mainListView.setAdapter(mArrayAdapter);
+mArrayAdapter.ArrayAdapter(layout,context)
+mArrayAdapter.notifyDataSetChanged();
+
+RESOURCES
+R.string
+R.drawable
+R.id.this_is_the_id
+R.layout.this_is_the_layout
+android.R.layout.this_is_the_layout (adroid defined layouts)
+
+CONTEXT
+Is used by adapters to populate data
+Equivalent to Rail's models
+Can fetch data from a file, or external APIs or actual databases
+ArrayList
+	ArrayList mNameList = new ArrayList();
+	mainListView.setAdapter(mArrayAdapter);
+	mNameList.add
+
+ITEM CLICK LISTENER
+Just as buttons use setOnClickListener, list items use setOnItemClickListener
+Add AdapterView.OnItemClickListener to the activity's "implements"
+And of course implement it, perhaps by using ide's shortcut: define methods
+onItemClick(AdapterView<?>parent, View view, int position, long id){}
+
+Debugging
+Bad code may compile successfully but crash the app at runtime. See logcat to debug the issue.
+Outputing to console:
+	- log.d/v/i/e/w('abc'+'def'+'ghi')
+	
+SUPPORT LIBRARIES
+Allow adding features of newer Android versions to older ones
+https://developer.android.com/tools/support-library/features.html
+Third party libraries also available
+
+MENU
+
+XML NAMESPACES
+Defined in XML/XHTML Documents
+The links these definations refer to are human readable identifiers but not remotely defined defs
+xmlns:xhtml="http://www.w3.org/1999/xhtml"
+xmlns="http://www.w3.org/1999/xhtml"
+	any element without a namespace prefix is considered to be in the XHTML namespace
+If your app is using the Support Library for compatibility on versions as low as Android 2.1, the showAsAction attribute is not available from the android: namespace. Instead this attribute is provided by the Support Library and you must define your own XML namespace and use that namespace as the attribute prefix. (A custom XML namespace should be based on your app name, but it can be any name you want and is only accessible within the scope of the file in which you declare it.)
