@@ -1,0 +1,8 @@
+REDIRECTS
+request.env["HTTP_REFERER"]
+
+ROUTING
+(edit|new|delete|nothing)_polymorphic_path(object)
+
+ERROR PAGES
+raise ActionController::RoutingError.new('Not Found')

@@ -19,12 +19,12 @@ If you need to integrate sums in respective fields, then must GROUP BY
 
 
 SAVING
-<conditions>first_or_create<attributes>
+<conditions>first_or_create_by<attributes>
 <conditions>update_all(attributes)
 assign_attribute(s)
-update_attribute(s)
-update_column(s)
-attributes=
+update(attributes) -> USE THIS IF AMBIGUITY OVER NEW/OLD RECORD
+update_column(s) -> SKIPS VALIDATIONS
+attributes= -> DOESN'T SAVE
 save/save!
 
 SELECT

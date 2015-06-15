@@ -33,8 +33,8 @@ FONTAWESOME
 gem 'font-awesome-rails'
 *= require 'font-awesome'
 fa-icon "name"
-
 @import "font-awesome";
+
 FRIENDLY_IDS
 extend FriendlyId
 friendly_id :column
@@ -78,9 +78,21 @@ Paperclip.run('command','extensions') Runs arbitrary OS commands
 File.extname('filename')
 
 PUBLICACTIVITY
-install: rails g public_activity:migration
-OBJECT.create_activity :create , recipient: @response.mindlog.user , owner: current_user
-include PublicActivity::Common
+Installation
+	install: rails g public_activity:migration
+	Add to model:
+		include PublicActivity::Model
+		include PublicActivity::Common (if donot need tracked)
+		tracked
+Default Behavior
+	create/update/destroy activities are recorded
+Custom Activity
+	OBJECT.create_activity :create , recipient: @response.mindlog.user , owner: current_user, parameters:{}
+Rendering
+	render_activities (all_activities)
+	render_activity (single_activity)
+	root: <> <- The folder inside views which contain the template that is to be rendered
+	layout: locals:
 
 SITEMAP_GENERATOR
 gem 'sitemap_generator'
@@ -92,6 +104,7 @@ edit config/sitemap.rb --- the file tells you how
 TABS_ON_RAILS
 <%= tab.name "Name" , name_path %> TO create the tab
 set_tab :name (in controller/view) to select the tab
+
 UNREAD
 install: rails g unread:migration
 In user.rb acts_as_reader
@@ -99,6 +112,14 @@ In user.rb acts_as_reader
 WHENEVER
 Update schedule.rb -> whenever -> whenever -w
 crontab -l for viewing entries
+
+WORKFLOW
+Advanced
+	https://github.com/geekq/workflow/issues/151
+	article.current_state.events.keys
+	article.current_state.events.include?
+	article.current_state.events.each do |event|
+		event[1][0]
 
 YAML_DB
 rake db:data:dump/load (needs yaml_db)

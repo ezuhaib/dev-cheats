@@ -1,0 +1,18 @@
+Locomotive
+
+Wagon: Very easy installation and deployment
+Reduced clutter and very clean folder structure
+Not very rail-ish . Has to be learned
+NoSql (MongoDB)
+Higher RAM requirements
+Liquid markup. Excellent way for liquid mastery, but may be less flexible than erb
+Most application development takes place in command line
+Auto creation of an admin
+features: categories
+
+Refinery
+
+Standardy installation
+Can use any database
+Lower RAM requirements
+Apparently better suppported

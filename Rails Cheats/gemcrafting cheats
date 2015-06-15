@@ -8,6 +8,8 @@ ActionController::Base.class_eval
 DEFINING OR EXECUTING STRINGS
 Class.send :method , params
 define_method :name do |params|
+method = Class.method(:method)
+method.call
 
 DIGGING INTO FUNCTIONALITY
 User.instance_variables

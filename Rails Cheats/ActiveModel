@@ -11,6 +11,18 @@ has_many :channels , through: :channel_items , conditions: ["channel_items.statu
 
 HAS_MANY
 has_many :items , class_name: "ChannelItem" (for model aliasing)
+options
+    :as
+    :autosave
+    :class_name
+    :dependent
+    :foreign_key
+    :inverse_of
+    :primary_key
+    :source
+    :source_type
+    :through
+    :validate
 
 POLYMORPHIC
 belongs_to :likeable, polymorphic:true

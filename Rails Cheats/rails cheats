@@ -13,25 +13,8 @@ gem 'name' , path: "local path"
 bundle outdated
 bundle open ckeditor
 
-FORM
-f.collection_select :category , Category.all , :id , :name
-
 MAILER
 UserMailer.registration_confirmation(current_user).deliver
-
-MIGRATIONS - CUSTOM
-def change/up/down
-add_index :table, [:col1,:col2] (also: remove_index)
-create_table :table do |t| t.type :name end
-rename_column :table, :old_name , :new_name
-change_column :table, :column, :type , default: value
-change_column_default :table, :column, value
-
-MIGRATIONS - GENERATORS
-add_column_to_table column:type
-remove_column_from_table column:type
-CreateJoinTablePostsUsers post user
-rake db:migrate:up/down/redo/nothing-for-'change' VERSION=20140429113839
 
 MONKEY PATCHING
 Adding anything in model:
@@ -41,12 +24,6 @@ RAKE DB
 rake db:create RAILS_ENV="development"
 rake db:create:all
 rake db:schema:load RAILS_ENV="development"
-
-REDIRECTS
-request.env["HTTP_REFERER"]
-
-ROUTING
-(edit|new|delete|nothing)_polymorphic_path(object)
 
 VALIDATIONS
 validates_uniqueness_of :recipient_id, scope: [:sender_id] (for combination uniqeness)

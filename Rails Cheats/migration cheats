@@ -1,0 +1,14 @@
+MIGRATIONS - CUSTOM
+def change/up/down
+drop_table :table_name
+add_index :table, [:col1,:col2] (also: remove_index)
+create_table :table do |t| t.type :name end
+rename_column :table, :old_name , :new_name
+change_column :table, :column, :type , default: value
+change_column_default :table, :column, value
+
+MIGRATIONS - GENERATORS
+add_column_to_table column:type
+remove_column_from_table column:type
+CreateJoinTablePostsUsers post user
+rake db:migrate:up/down/redo/nothing-for-'change' VERSION=20140429113839

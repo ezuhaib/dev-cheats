@@ -1,0 +1,11 @@
+FORM_FOR
+[:namespace, @object]
+url: url_for(controller: , action: ) or url: (xyz_path)
+
+SELECT
+select_tag :category , options_for_select([1,2,3])
+f.select :category , ['a',1],['b',2]
+f.select :category , ['a','b']
+f.select :category , Category.form_friendly_list (Using custom class method)
+f.select :category , options_from_collection_for_select(Category.all, :id , :name)
+f.collection_select :category , Category.all , :id , :name
