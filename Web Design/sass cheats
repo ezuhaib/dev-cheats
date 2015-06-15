@@ -1,0 +1,19 @@
+BASICS
+$theme-color: #009b99;
+@import 'filename';
+
+HIEARCHY
+abc{def{}}
+abc{&:hover{}}
+
+MIXINS
+@mixin icon-variant($color){background-color: $color}
+.icon-pakistan{@import icon-variant(#ccc)}
+
+FUNCTIONS
+Use just like we use mixins, without 'import'
+rgb(r,g,b)
+rgba(r,g,b,a)
+mix(color-a,color-b,weight)
+lighte/darken/saturate/desaturate(color,intensity)
+grayscale/complement/invert(color)

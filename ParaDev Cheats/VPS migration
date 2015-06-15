@@ -1,0 +1,13 @@
+- Prepare the server (see vps setup)
+- Add a privatekey to the new server in your old host
+- copy over the files using rsync (perhaps the apps directory)
+- update bundles
+- copy over nginx configuration
+- Copy over postgres databases and start server
+- bundle exec unicorn -E production -c config/unicorn.rb
+- Daemonize above if satisfied
+- Install elasticsearch
+- Update elasticsearch cache
+- Install backup gem and copy over backup folder
+- Update cron tasks
+- Update DNS

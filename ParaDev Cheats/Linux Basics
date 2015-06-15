@@ -31,7 +31,9 @@ crontab -l
 FILE MANAGMENT
 mkdir ls rm mv cp
 touch filename
-
+cp, mv
+find directory -name <name>
+whereis app
 
 DIRECTORIES
 /etc/init.d gives services installed

@@ -1,0 +1,12 @@
+BOOTSTRAP_SELECT
+gem 'bootstrap-select-rails'
+/* require 'bootstrap-select'
+$('.selectpicker').selectpicker();
+data-style="btn-success"
+
+SELECTIZE
+gem 'selectize-rails'
+
+BOOTSTRAP DATEPICKER
+gem 'bootstrap-datepicker-rails'
+reference: http://eternicode.github.io/bootstrap-datepicker

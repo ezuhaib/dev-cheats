@@ -6,3 +6,5 @@ transition: property-to-transit time easing;
 
 BOOSTRAP
 mixin: darken(@link-color, 15%)
+
+MEDIA QUERIES:

@@ -7,6 +7,4 @@ rvm list known
 rvm install 2.2.0
 gem install rails
 
-sudo -u postgres psql postgres
-
 git clone <ssh path>
