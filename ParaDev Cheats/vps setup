@@ -2,7 +2,7 @@ Login with vanilla credentials
 
 A. SECURITY
 Create new user with adduser
-Add new user to sudoers group with visudo
+Add new user to sudoers group with visudo under "User privelege specs"
 Create an RSA key pair locally with ssh-keygen
 Upload key to remote user with ssh-copy-id
 Change SSH port to non-standard port
@@ -11,16 +11,25 @@ Disable password login
 
 B. CUSTOMIZATIONS
 Colorize bash prompt via ~/.bashrc
+Comment out SendEnv LC_ in your local /etc/ssh/ssh_config
 
-< a lot of text missing >
+C. INSTALLATIONS
+(Need sudo apt-get update first)
+curl
+rvm, and required rubies
+bundler
+postgres
+nginx
+git
+elasticsearch
 
-C. MOVING ON
+D. MOVING ON
 create folder app/psymic remotely
 run cap git:check
 install git-core on vps. may need to apt-get update first
 add github repo fetch key (private) to vps
 run cap deploy:check
 
-D. LATER STEPS
+E. LATER STEPS
 Add crontasks back
 Add the backup gem

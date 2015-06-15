@@ -28,10 +28,38 @@ ssh user@host -p <port>
 ssh -Nn -D 1080 host
 
 #################################
-# SECTION 3: SERVER CONFIG
+# SECTION 3: SERVER SHORTCUTS
 #################################
-shortcuts: add to ~/.ssh/cpnfig and chmod 600 it
+shortcuts: add to ~/.ssh/config and chmod 600 it
 Host <anyname>
 Hostname <ip>
 Port
 User
+
+######################################
+# SECTION 4: SSH DEMON CONFIGURATION 
+######################################
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config_backup
+sudo vim /etc/ssh/sshd_config
+You may want to
+	Change port to a non-standard one
+	Disable root login
+	Disable password login (PasswordAuthentication no)
+Then sudo service ssh restart
+
+#######################
+# COPYING
+######################
+scp source:file destination:directory/file
+	e.g scp ~/.ssh/tunevps_rsa psymic:~
+rsync has a similar syntax
+	rsync -avP source:file destination:directory
+	a:archive v:verbose P:progress/resume
+	after avP add: -e "ssh -p $portNumber" for manual port number
+
+
+################################
+TROUBLESHOOTING
+################################
+Add "-o PubkeyAuthentication=no" just before ssh ip to force password login
+	Helpful in too many logins error
