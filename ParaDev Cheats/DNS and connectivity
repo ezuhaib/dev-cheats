@@ -1,0 +1,1 @@
+dig +norecurse @m-2.pknic.net.pk. www.stallion.org.pk. ns

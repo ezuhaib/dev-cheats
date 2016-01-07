@@ -1,5 +1,8 @@
 Login with vanilla credentials
 
+apt-get update
+apt-get install sudo
+
 A. SECURITY
 Create new user with adduser
 Add new user to sudoers group with visudo under "User privelege specs"
@@ -15,20 +18,39 @@ Comment out SendEnv LC_ in your local /etc/ssh/ssh_config
 
 C. INSTALLATIONS
 (Need sudo apt-get update first)
-curl
-rvm, and required rubies
-bundler
-postgres
-nginx
-git
-elasticsearch
+Ruby
+	Install curl
+	\curl -sSL https://get.rvm.io | bash -s stable
+	source /home/ezuhaib/.rvm/scripts/rvm
+	rvm list known
+	rvm install 2.2.0
+	gem install rails (or only bundler)
+Other (Shall configure later)
+	git postgresql postgresql-contrib libpq-dev nginx
+	elasticsearch
 
-D. MOVING ON
-create folder app/psymic remotely
-run cap git:check
-install git-core on vps. may need to apt-get update first
-add github repo fetch key (private) to vps
-run cap deploy:check
+D. SETUP POSTGRES
+See postgres cheats
+In summary you have to create and start a cluster, create an appropriate user and password,
+and create a database you'd be working with. Finally you'll be migrating data from a data dump
+using various commands.
+
+E. DEPLOYMENT
+On Remote:
+	Create the apps/psymic folder
+	Install git and bundler
+	add github repo fetch key (private) key,
+	and test using ssh -vT git@github.com
+	Create shared paths, if not using a mina setup task
+	You may want to set RAILS_ENV and RACK_ENV env variables on server
+Locally:
+	Review your deploy.rb file
+	Install mina and mina-unicorn
+	mina setup
+	mina deploy
+On Remote:
+	Configure and start unicorn
+	Configure and start nginx
 
 E. LATER STEPS
 Add crontasks back

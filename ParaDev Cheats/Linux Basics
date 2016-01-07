@@ -1,25 +1,3 @@
-PERMISSIONS
-chmod -xxx dir
-chmod 	777: all perm to everyone
-		700:owner can do all
-		644:owner write, world can only read
-		600:only owner can read/write
-chmod a+x to make a file executable
-
-VIM/NANO
-visudo
-tap <i> then right click to paste in VIM , exit insert mode before save
-:q :w :wq :qa! gg dG u
-shift+insert to paste and ctrl+insert to copy
-
-USERS
-passwd
-cat /etc/passwd
-/var/log/secure stores commands run with sudo
-adduser deluser addgroup delgroup
-sudo -u -username runs a command through the given user
-visudo to add user to sudoers group
-
 CRON
 gem install whenever
 wheneverize
@@ -28,6 +6,19 @@ whenever
 whenever --update-crontab
 crontab -l
 
+DIRECTORIES
+/etc/init.d gives services installed
+/var/log contains log files
+/etc/environment has environment variables
+~/.programrc where program is program name... such file contain per-user config
+
+ENVIRONMENT VARIABLES
+printenv
+printenv TERM or echo $TERM
+/etc/environment for system wide
+~/.profile for user wide
+source <file> to reload the file
+
 FILE MANAGMENT
 mkdir ls rm mv cp
 touch filename
@@ -35,11 +26,21 @@ cp, mv
 find directory -name <name>
 whereis app
 
-DIRECTORIES
-/etc/init.d gives services installed
-/var/log contains log files
-/etc/environment has environment variables
-~/.programrc where program is program name... such file contain per-user config
+LOGS
+read via less/head/tail commands right from command line
+ls /var/log
+/var/log/kern.log
+/var/log/debug
+if the system spontaneously logs out (and you are using Xorg) then Xorg crash is the culprit
+Xorg.x.log.old for previous session and Xorg.x.log for current (comparison can help too)
+
+PERMISSIONS
+chmod -xxx dir
+chmod 	777: all perm to everyone
+		700:owner can do all
+		644:owner write, world can only read
+		600:only owner can read/write
+chmod a+x to make a file executable
 
 SERVICES
 sudo services <name> start|status|stop|restart
@@ -52,3 +53,17 @@ AUTOSTART
 /etc/rc.local
 sudo update-rc.d <service>
 man update-rc.d
+
+USERS
+passwd
+cat /etc/passwd
+/var/log/secure stores commands run with sudo
+adduser deluser addgroup delgroup
+sudo -u -username runs a command through the given user
+visudo to add user to sudoers group
+
+VIM/NANO
+visudo
+tap <i> then right click to paste in VIM , exit insert mode before save
+:q :w :wq :qa! gg dG u
+shift+insert to paste and ctrl+insert to copy

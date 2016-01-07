@@ -1,9 +1,15 @@
+AUDIO
+aplay -l
+arecord -l
+
 CODECS
 sudo apt-add-repository ppa:strukturag/libde265 for H265
 
 GRAPHICS
 compiz-plugins
 compizconfig-settings-manager
+lspci | grep VGA
+lshw -c video
 
 BASH
 ~/.bashrc
