@@ -1,0 +1,7 @@
+DB
+Performance develops on number of queries
+And quality
+And indices
+
+BENCHMARKING
+Benchmark.measure {x.times{}}

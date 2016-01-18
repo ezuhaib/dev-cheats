@@ -1,0 +1,119 @@
+NEO4J EXPERIENCES
+
+WHY
+I wanted to make a graph of topics.
+The closest solution was hacking the ancestry or closure_tree gems
+The issue was: To create fast traversal, needed to store massive list of parent,child,generation
+	hierarchies.  If for example we create an "alternative tree" based on early nodes, and the total number of nodes is 5000, we'll be creating an extra 5000 records. Ugly.  Very ugly. Expensive indexing as well. The queries woudn't be too complex though.
+
+ISSUES
+If I end up using it, migrating out of it can be very tedious, I think.
+The highy optimized features are reserved for enterprise users.
+Cypher is not necesserily faster than relational DB. Can actually be slower.
+Actual optimization needs using traversal API which is based on JAVA
+
+ALTERNATIVES
+There are alternatives which claim to be faster, cheaper, simpler and more robust.
+But most of them aren't as old, and do not support ruby/rails well enough.
+
+STRENGTHS
+Data design is simple and elegant,
+You can hardly mess up there. Only few ways to design a given database.
+The real optimization is at queries/traversal level.
+Which can be done later on.
+Cypher ensures that we're working soon, and optimize only later.
+
+WEIRD AFTER AN SQL BACKGROUND
+Absense of easy ids (apparently)
+	Later I find that nodes do have ids (relationships do not)
+	But are volatile and unreliable.
+	And so the neo4jrb gem uses its own unique ids
+Since there's no concrete schema, you need it drawn somewhere, or written, or you can mess up
+
+DATA DESIGN
+The only design question I can think of is:
+	"Make it a node or an edge(relationship)?"
+The easy answer would be that if a relationship can be 'interacted upon' it should be a node
+e.g a user comment over an article can be a relationship
+	the number of likes can then be simply properties of this relationships
+	But what about linking the users who liked the comment to the comment?
+	Thats where we need the comment to be a node
+
+HEART BREAK
+Even a simple Node.first query on Cipher takes minimum of 6ms
+This is 10 times slower than Activerecord
+An activerecord leaves query takes 1-2ms
+A neo4j leaves query (using cipher) takes 30-80ms
+That's at least 30 times slower
+
+QUESTIONS
+Shall we need elasticsearch?
+	I found out that the two are very well integrated. Directly as well as over their respective ruby/rails wrappers, i.e neo4jrb and searchkick.
+Can it replace postgres completely?
+	I think no. Because apart from our centeral topic tree algorithms, the data is hardly interconnected via complex relationships. Although at a very later stage, a switch may be warranted.
+
+
+MY SNIPPETS
+MATCH x=(:Topic{name:'Nutrition'})-[:PARENT_OF*]->(topic)
+WHERE length(x) >1
+RETURN topic.name AS Name,length(x) AS Depth
+
+using (rel_length: x)
+	x can be:
+	a level
+	level range 1..3(can also write as ..3)
+	{min: 1, max: 2}
+	{min: 1}
+	:any
+
+rake neo4j:migrate[task,subtask]
+	add_id_property,setup
+	add_id_property
+
+Topic.where("NOT(result_topic<-[:PARENT_OF]-())")
+
+MATCH p=(a:Topic{name:'root'})-[r:PARENT_OF*]->(c:Topic{name:'Null Hypothesis'})
+RETURN nodes(p)
+
+Children with multiple parents
+MATCH (t:Topic {name: 'Test'})-[:PARENT_OF*]->(c:Topic)<-[:PARENT_OF]-(:Topic) 
+RETURN c
+
+match (t:Topic)
+where t.body is null
+set t.body = t.text
+remove t.text
+
+children and child_ids
+parents and parent_ids
+neo4j_obj
+rel and rels
+result_nodes/objects/ids
+flat_map
+rels_to aka all_rels_to
+first_rel_to
+over AssociationProxy
+	all/first/last/each/all/etc
+	result (returns as an array)
+	result_ids, result_nodes
+Algo
+	Algorithms (e.g for paths.shortest_path etc) existed in legacy versions
+	Now these do not
+	And have no easy ways in neo4jrb
+	A paths modules is being built to help that. But it isn't ready yet.
+	Until then, the best bet is using cypher queries
+	see: http://stackoverflow.com/a/27582574/1731393
+Custom Queries in Neo4j.rb
+	Neo4j::Session(:current for current query).query
+	The methods are chainable
+	match,where,return,set
+	match
+		'n' or :n
+		n:Person
+		n: 'Person'
+		n: :Person
+		n: 'Person {name: "Brian"}'
+	where
+		'n.name = "lorem"'
+		'n.name = ?, "lorem"'
+		n: {name: "lorem"}

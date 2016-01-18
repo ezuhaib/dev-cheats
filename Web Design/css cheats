@@ -3,8 +3,6 @@ opacity
 
 ANIMATIONS:
 transition: property-to-transit time easing;
-
-BOOSTRAP
-mixin: darken(@link-color, 15%)
+transition: all 0.3s linear (e.g. applied to fonts to animate all transitions)
 
 MEDIA QUERIES:

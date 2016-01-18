@@ -1,6 +1,11 @@
 FORM_FOR
 [:namespace, @object]
 url: url_for(controller: , action: ) or url: (xyz_path)
+form_for :topic , topic_path = form_for @topic
+Params in forms can be stuctured into a nest of hashes
+	"field[a]" and "field[b]" would get grouped into a field array
+	Do not forget the quotes. Without them field[0] would mean 'f'
+	More: https://www.safaribooksonline.com/library/view/rails-cookbook/0596527314/ch04s02.html
 
 SELECT
 select_tag :category , options_for_select([1,2,3])

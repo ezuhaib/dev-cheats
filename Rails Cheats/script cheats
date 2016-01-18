@@ -1,0 +1,16 @@
+For javascript scripts, with or without rails integration
+
+INIT SCRIPTS
+$( document ).on('ready page:load', function(){}
+
+NOTY
+gem: rails-noty
+js:
+	//= require noty/jquery.noty
+	//= require noty/layouts/top
+	//= require noty/themes/default
+stylesheets:
+	none
+init
+	the init script can be added in a partial
+	and included in the body (not the head)
