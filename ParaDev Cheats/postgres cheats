@@ -31,18 +31,53 @@ pg_restore -c -d <database_name> file
 	d tells us the database name. must already exist.
 
 USERS AND PERMISSIONS
-peer authentication: will authenticate if logged-in as the same user as the role
-md5 for password authentication
-\password to set password
-'postgres' is a special super accound, with an associated system user
-postgres -U abc (if md5 allowed)
-sudo su abc (if peer allowed)
-CREATE ROLE user
-or createuser in commandline
-ALTER user WITH role
-GRANT ALL ON database TO user;
-GRANT user WITH LOGIN;
-/etc/postgresql/9.3/main/pg_hba.conf for user managment
-Need to reset after above
+GENERAL
+	CREATE ROLE user WITH LOGIN CREATEDB (or createuser in commandline)
+	or if created without granting it "LOGIN" then can grant later by:
+	ALTER ROLE ezuhaib with LOGIN;
+	ALTER ROLE ezuhaib with CREATEDB;
+PEER AUTHENTICATION
+	will authenticate if logged-in as the same user as the role
+	sudo su abc (if peer allowed)
+	Add a postgres user with your name to ease things up
+MD5 AUTHENTICATION
+	for password authentication
+	\password to set password
+	postgres -U abc (if md5 allowed)
+TIDBITS
+	'postgres' is a special super accound, with an associated system user
+	/etc/postgresql/9.3/main/pg_hba.conf for user managment
+	Need to reset after any manual changes to conf file
 	sudo service postgresql restart
-Add a postgres user with your name to ease things up
+PERMISSIONS
+	GRANT ALL ON database TO user;
+
+MIGRATING TO POSTGRES IN DEVELOPMENT ENVIRONMENT
+	STAGE 1: DATA DUMP
+		- Ensure that your code matches your database (i.e you're in the latest branch. No stash etc).
+		- Add gem: yaml_db
+		- Update schema.rb by rake db:schema:dump (warning: type carefully)
+		- And check manually for any blanks. Possible if you've been manually fiddling with the database
+		- Then do rake db:dump
+		- Delete any migration files if appropriate
+	STAGE 2: INSTALLATION & CONFIGURATION
+		- Install postgres (as above)
+		- Install pgadmin3 (4 is more difficult as of now)
+		- Add your current user to postgres using instructions as above
+	STAGE 3: RAILS CONFIGURATION
+		- Replace 'sqlite3' in gemfile with 'pg'
+		- Update databse.yml as follows:
+			- Update database names from development.sqlite (etc) to
+				<app_name>_development etc
+			- Add encoding: unicode (to all)
+			- Username and password is not needed if added current user to psql and it supports peer authentication
+				- If do need to provide, please rather add Rails.application.secrets[:database][:username]
+				- And add database: <next line with an extra indentation> username: ezuhaib
+				- And remember to add secrets.yml to your .gitignore
+		- If CREATEDB role has been assigned (perhaps temporarily) to the given postgres user then you can:
+			- rake db:create followed by db:schema:load
+			- or db:setup (which does the above)
+		- Alternatively create the database manually and only run db:schema:load
+	STAGE 4: PORT BACK DATA
+		- rake db:load
+		- Afterwards, remove the yaml_db gem as well

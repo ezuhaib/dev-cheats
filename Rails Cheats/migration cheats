@@ -11,4 +11,8 @@ MIGRATIONS - GENERATORS
 add_column_to_table column:type
 remove_column_from_table column:type
 CreateJoinTablePostsUsers post user
+  Note the plural usage of models
+  And provide them in alphabetic order
+  And edit the migation file afterwards to select the appropriate index
+  https://stackoverflow.com/questions/10790518/best-sql-indexes-for-join-table
 rake db:migrate:up/down/redo/nothing-for-'change' VERSION=20140429113839

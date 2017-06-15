@@ -50,6 +50,9 @@ Usage
 	rvm use 1.9.3
 	rvm use --default 1.9.3
 	rvm use --system
+	rvm use 1.9.3@gemset
+	rvm gemset create rails5
+	can also create project specific gemesets via rvm @myapp
 
 RAILS
 https://gorails.com/setup/ubuntu/14.04

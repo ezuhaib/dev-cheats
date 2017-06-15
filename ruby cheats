@@ -2,7 +2,7 @@ ARRAY
 [1,2].max|min
 [2,1].sort = [1,2]
 [1,2].join(",") = "1,2"
-[a,b,c] & [b,c,d] returns [b,c] (intersection) 
+[a,b,c] & [b,c,d] returns [b,c] (intersection)
 [a,b] + [c] = [a,b,c]
 [a,b] << c = [a,b,c]
 
@@ -34,19 +34,7 @@ strftime("due on %B %d at %I:%M %p")
 Year: Y/y
 Month: m/b/B
 Date: d/-d
-
-PROCS & LAMDA
-add1 = proc {|i|i+1}
-add1 = lambda { |i|i+1}
-add1 = Proc.new {|i|i+1}
-add1 = ->i{i+1}
-add1 = ->{return "hello"}
-add1.call(1)
-&add1 : converts proc to block e.g
-[1,2,3].collect(&add1)
-def some_method(arg1,&block) converts block to lambda
-Lambda allows use of 'return' while proc does not
-Lambda enforces arguments requirement while proc does not
+Day: a/A
 
 METHOD
 Method is an object
@@ -62,40 +50,5 @@ Reopen method is overriden
 To superimpose, add "super"
 To make it's variables available, use attr_accessor
 
-NEW VS INITIALIZE
-New is a class method, initialize is an instance method
- 
-MODULE
-Module = namespace/class grouping
-Module cannot be initialized, has no "self"
-Module can be included in as a whole in other classes 
-
-REQUIRE
-To include another file as such so that it's content can be used
-e.g you may call User.first only because that class was required by rails base
-required files may also define methods
-required file is only loaded once
-to load multiple times use LOAD
-files are loaded from $load_path
-Used before opening class
-
-INCLUDE
-Must be used from within a class
-The included module must be defined in any of the required files
-Unlike require, only modules can be included, not any file
-The module's methods are merged with the current class
-
-EXTEND
-The module's methods extend only as class methods
-
-Sanitization
-ActionController::Base.helpers.strip_tags(string)
-ActionController::Base.helpers.strip_links(string)
-
 Length
 truncate(string, length:80, separator: ' ')
-
-Advanced
-"string".classify.constantize
-"string".demodulize
-"string".deconstantize

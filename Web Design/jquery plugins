@@ -10,3 +10,6 @@ gem 'selectize-rails'
 BOOTSTRAP DATEPICKER
 gem 'bootstrap-datepicker-rails'
 reference: http://eternicode.github.io/bootstrap-datepicker
+
+NOTY
+gem 'noty-rails'
